@@ -1,0 +1,37 @@
+using System;
+
+namespace ConsoleApp16
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("vnesete broj za zolti snoli :");
+            int x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("vnesete broj za crveni snoli :");
+            int y = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("vnesete broj za sini snoli :");
+            int z = Convert.ToInt32(Console.ReadLine());
+            int zbr = x + y + z;
+            int broj = 0;
+
+            if(zbr%3 == 1)
+            {
+
+                broj++;
+                zbr = zbr + broj;
+
+            }
+            broj++;
+            if (zbr % 3 == 0)
+                broj = 0;
+
+
+
+
+
+
+            Console.WriteLine("Stoce treba da doturi " +broj+ " snoli ");
+        }
+    }
+}
