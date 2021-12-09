@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+
+
+namespace ConsoleApp20
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Vneste iznos na smetkata.");
+            int smetka = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Vneste iznos na pari vo paricnikot.");
+            int paricnik = Convert.ToInt32(Console.ReadLine());
+
+            int baksis = 0;
+
+            for (int i = 0; i < smetka;i++)
+            {
+                int Vksmetka = smetka + 1;
+                if (Vksmetka < paricnik)
+                {
+                    if (Vksmetka % 5 == 0)
+                    {
+                        if (i >= ((double)Vksmetka / 100) * 5)
+                        {
+                            if (i <= ((double)Vksmetka / 100) * 10)
+                            {
+                                baksis++;
+                            }
+                        }
+
+                    }
+
+                   
+
+                }
+               
+            }
+
+
+
+            Console.WriteLine(baksis);
+        }
+    }
+}
