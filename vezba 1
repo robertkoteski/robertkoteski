@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+
+namespace struktura
+{
+    class Program
+    {
+        struct Licnost //kreirame instanca ili vid na podatok so ime Licnost;vid na podatoci se(int,string,double,float itn)
+        {
+            public string ime; // del od podatokot Licnost.
+            public string prezime; // gi pisuvame so public za da imame pristap do niv i vo drugi funkcii.
+            public int godini;//vidot na podatokot mozi da bidi od string,int,bool,double,float itn.
+        }
+        static void Main(string[] args)
+        {
+            Licnost lic;//kreiram promenliva od tip Licnost kako so mozi da bidi od tip int.
+            List<Licnost> listLic = new List<Licnost>(); // kreirame lista so elementi od tip Licnost.
+            Console.WriteLine("vnesete ime ,prezime i godini licnosta"); // mu pisuvame poraka na korisnikot za da znae sto treba da vnesi.
+            for(int i=0;i<5;i++)//forot go koristime za da mozime da vnesime podatoci za poveke od edna licnost.
+            {
+                lic.ime = Console.ReadLine();//so lic. pristapuvame do bilo koj podatok od struktura Licnost.
+                lic.prezime = Console.ReadLine();// ime prezime i godini se podatoci od Licnost.
+                lic.godini = Convert.ToInt32(Console.ReadLine()); // sekoj pat od i=0 do i=4 vnesuvas
+                                                                  // podatoci za 5 licnosti (nivni iminja,prez i godini).
+                listLic.Add(lic);// so ovaa naredba posle sekoj vnesen podatok na edno lice
+                                 // nie tie lica gi smestuvame vo listLic listata,taa gi cuva site podatoci za licnostite.
+            }
+            int max = listLic[0].prezime.Length;//na max mu dodeluvame dolzina od prezime na prvata zacuvana licnost vo listata(listLic[0] e
+                                                //prv element vo listata).
+            int index = 0;// kreirame index promenliva za podocna da mozime
+                          // i(indeksot od forot da go koristime vo pecatenje na liceto od listata) so toa sto index ke ja cuva vrednosta na i.
+            for (int i = 0; i < listLic.Count; i++)// ovaj for go koristime za da vrtime niz listata so zacuvani licnosti niz listLic.
+            {
+
+                if (max < listLic[i].prezime.Length)//uslov kade proveruvame dali max e so pomala dolzina od prezimeto na momentalnata(i-tata)
+                    //licnost od forot.
+                {
+                    max = listLic[i].prezime.Length;//ako e ispolnet uslovot gore odnosno ako max e so pomala dolzina od prezimeto na itata
+                    // licnost togas max = dolzinata na prezimeto na taa licnost.
+
+                    index = i;// ovde go cuvame indeksot odnosno pozicijata na licnosta za da znaeme podocna vo pecatenjeto za koja licnost 
+                    //tocno se raboti.
+                }
+            }
+            Console.WriteLine("najvozrasna licnost e:" + listLic[index].prezime);// ovde pecatime prezime na licnosta so najdolgo prezime koja
+            // so pomos na promenlivata index ja zacuvavme gore na red 42.
+        }
+    }
+}
