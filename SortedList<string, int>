@@ -1,0 +1,41 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace SortedList
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //lista so iminja
+            List<string> listIminja = new List<string> { "Leticija", "Robert","Viktorija", "Robert", "Leticija", "Viktorija" };
+            //definirame sortirana lista
+            SortedList<string, int> sortIminja = new SortedList<string, int>();
+
+            for (int i = 0; i < listIminja.Count; i++)
+            {
+                //proveruvame dali imeto postoi vo sortiranata lista
+                if (sortIminja.ContainsKey(listIminja[i]))
+                {
+                    //imeto postoi i vrednosta se zgolemuva za 1
+                    sortIminja[listIminja[i]]++;
+                }
+                else
+                {
+                   //imeto ne posti i se dodava po  prv pat
+                    sortIminja[listIminja[i]] = 1;
+                }
+            }
+           //gi prikazuvame elementite na sortiranata lista
+            for (int i = 0; i < listIminja.Count; i++)
+            {
+                Console.WriteLine("key: {0}, value: {1}", sortIminja.Keys[i], sortIminja.Values[i]);
+            }
+        }
+    }
+}
+
+
