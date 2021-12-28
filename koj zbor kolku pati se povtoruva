@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+namespace SortedList_koj_zbor_kolku_pati_se_povt_vo_r_ca
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            string recenica = "Zdravo, jas sum Marija i jas imam 15 godini.";
+            List<string> zborovi = new List<string>(); 
+            SortedList<string, int> zbor = new SortedList<string, int>();
+            string substr = "";
+            for(int i=0;i<recenica.Length;i++) // so ovaj for go oddeluvam sekoj karakter od r-cata
+            {
+                substr += recenica[i]; // na stringot mu go dodavam sekoj karakter od r-cata se dodeka
+                //karakterot ne e ednakov na prazno mesto
+                if (recenica[i] == ' ') // ako karakterot e prazno mesto,togas:
+                {
+                    zborovi.Add(substr); // dodaj go zborot vo listata so zborovi i 
+                    substr = "";//go praznam zborot odnosno nema nikakva vrednost za da go ispolnam
+                    //so karakterite od sledniot zbor koj sledi posle praznoto mesto
+                }
+                if(i==recenica.Length-1)//ako i e ednakov na dolzinata na recenicata-1 toa znaci
+                    //deka se raboti za posledniot karakter od recenicata vo slucajov "." i:
+                {
+                    zborovi.Add(substr); // prethodniot oformen string "godini." go dodavam vo listata
+                }
+            }
+            for(int i=0;i<zborovi.Count;i++) //vrtam niz listata so zborovi
+            {
+                if (!zbor.ContainsKey(zborovi[i]))//ako zborot od listata(zborovi[i])
+                    //go nema vo sortedlistata togas go dodavame i negovata vrednost e 1
+                {
+                    zbor[zborovi[i]] = 1;
+                }
+                else // ako zborot veke go ima togas bidejki sme naisle povtorno na istiot
+                {
+                    zbor[zborovi[i]]++; // ja zgolemuvame negovata vrednost za 1
+                }
+              
+            }
+            for(int i=0;i<zbor.Count;i++)
+               Console.WriteLine("Kluc : {0} ,Vrednost : {1}",zbor.Keys[i],zbor.Values[i]);
+        }
+    }
+}
