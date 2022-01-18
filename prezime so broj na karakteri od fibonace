@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace Prezime_so_br_na_kar_od_Fib_Zadaca_3
+{
+    class Program
+    {
+        struct Licnost
+        {
+            public string ime;
+            public string prezime;
+            public int godini;
+        }
+        static bool eFibonaci(string ime)
+        {
+            int prv = 0;
+            int vtor = 1;
+            bool pripaga = false;
+            int tret = prv + vtor;
+            if (tret == ime.Length)
+            {
+                pripaga = true;
+            }
+            while (tret < ime.Length)
+            {
+                tret = prv + vtor;
+                if (tret == ime.Length)
+                {
+                    pripaga = true;
+                    break;
+                }
+                prv = vtor;
+                vtor = tret;
+            }
+            return pripaga;
+
+        }
+        static void Main(string[] args)
+        {
+            Licnost lice;
+            string path = @"c:\temp\PrezimeFib.txt";
+            string pathFib = @"c:\temp\Lista.txt";
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    lice.ime = s;
+                    lice.prezime = sr.ReadLine();
+                    bool isParsable = Int32.TryParse(sr.ReadLine(), out lice.godini);
+
+                    bool Fib;
+                    Fib = eFibonaci(lice.prezime);
+                    if (Fib == true)
+                    {
+                        Console.WriteLine(lice.ime + " " + lice.prezime + " " + lice.godini);
+
+                        if (File.Exists(pathFib))
+                        {
+                            using (StreamWriter sw = File.AppendText(pathFib))
+                            {
+                                sw.WriteLine(lice.ime);
+                                sw.WriteLine(lice.prezime);
+                                sw.WriteLine(lice.godini);
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+
+    }
+}
+
+
