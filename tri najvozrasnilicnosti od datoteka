@@ -1,0 +1,44 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+  
+
+namespace ConsoleApp47
+{
+    class Program
+    {
+        struct licnost
+        {
+            public string ime;
+            public string prezime;
+            public int godini;
+
+        }
+        static void Main(string[] args)
+        {
+            licnost lic;
+            string path = @"c:\temp\spisok.txt";
+            SortedList<int, licnost> licnosti = new SortedList<int, licnost>();
+
+            using (StreamReader sr = File.OpenText(path))
+            {
+                string s;
+                while ((s = sr.ReadLine()) != null)
+                {
+                    lic.ime = s;
+                    lic.prezime = sr.ReadLine();
+                    lic.godini = Convert.ToInt32(Console.ReadLine());
+
+                    licnosti.Add(lic.godini, lic);   
+                }
+                
+            }
+            for (int i = licnosti.Count - 1; i > licnosti.Count - 4;i--)
+
+            {
+                Console.WriteLine(licnosti.Keys[i]);
+                Console.WriteLine(licnosti.Values[i].ime);
+            }
+        }
+    }
+}
