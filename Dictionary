@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+ 
+
+namespace ConsoleApp48
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            List<string> gradovi = new List<string> { "prilep", "skopje", "bitola", "negotino", "kavadarci", "veles" };
+            Dictionary<char, string> lisgradovi = new Dictionary<char, string>();
+            string path = @"c:\temp\grad";
+            if(!File.Exists(path))
+            {
+                using (StreamWriter sw = File.AppendText(path))
+                {
+                    for (int i = 0; i < gradovi.Count; i++)
+                        sw.WriteLine(gradovi[i]);
+
+                }
+            }
+            
+            using(StreamReader sr=File.OpenText(path))
+            {
+                string s;
+                while((s=sr.ReadLine())!=null)
+                {
+                    lisgradovi.Add(s[0], s);
+                }
+            }
+            lisgradovi['s'] = lisgradovi['s'] + ",  strumica";
+            foreach (KeyValuePair<char, string> kvp in lisgradovi)
+                Console.WriteLine("key: {0}, value:{1}", kvp.Key, kvp.Value);
+        }
+    }
+}
